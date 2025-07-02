@@ -208,7 +208,7 @@ drosera bloomboost --trap-address <trap_address> --eth-amount <amount>
 ---
 
 # 2.Drosera Operator Setup
-# Choose Docker or SystemD
+# A. Choose Docker or SystemD
 
 Choose one Installation Method:
 
@@ -291,6 +291,25 @@ docker compose logs -f
 
 # Method 2: Install using SystemD
 
+## Remove Old Drosera SystemD Service (if any)
+
+Before creating a new systemd service for Drosera, stop, disable, and remove any old service to avoid conflicts:
+```bash
+# Stop the old service if running
+sudo systemctl stop drosera
+
+# Disable the old service so it won't start on boot
+sudo systemctl disable drosera
+
+# Remove the old service file
+sudo rm /etc/systemd/system/drosera.service
+
+# Reload systemd to apply changes
+sudo systemctl daemon-reload
+```
+
+---
+
 ## Prepare your environment variables
 
 - `ETH_PRIVATE_KEY`: Your Ethereum private key (used for signing)
@@ -365,7 +384,7 @@ sudo systemctl restart drosera
 ```
 ---
 
-## Register your Operator
+## B. Register your Operator
 
 ```bash
 drosera-operator register \
@@ -374,7 +393,7 @@ drosera-operator register \
   --drosera-address 0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
 ```
 
-## Opt-in your trap config (use dashboard instead [click here](#configure-through-dashboard-instead))
+## C. Opt-in your trap config (use dashboard instead [click here](#configure-through-dashboard-instead))
 
 ```bash
 drosera-operator optin \
@@ -385,7 +404,7 @@ drosera-operator optin \
 
 ---
 
-## Firewall Configuration
+## D. Firewall Configuration
 
 ```bash
 sudo ufw allow ssh
@@ -396,11 +415,11 @@ sudo ufw enable
 ```
 
 ---
-## Configure through dashboard instead
+# Configure through dashboard instead
 Go to [https://app.drosera.io/](https://app.drosera.io/)\
 ![configure through dashboard](Asset/configure%20through%20dashboard.png)
 
-## Useful Commands & Updates
+# Useful Commands & Updates
 
 ```bash
 # View operator logs
