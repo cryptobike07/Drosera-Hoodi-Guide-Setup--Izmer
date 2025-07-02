@@ -208,7 +208,14 @@ drosera bloomboost --trap-address <trap_address> --eth-amount <amount>
 ---
 
 # 2.Drosera Operator Setup
+# Choose Docker or SystemD
 
+Choose one Installation Method:
+
+- [Method 1: Install using Docker (click here)](#method-1-install-using-docker)
+- [Method 2: Install using SystemD (click here)](#method-2-install-using-systemd)
+
+# Method 1: Install using Docker
 ### Create Drosera Network Folder
 
 ```bash
@@ -282,10 +289,83 @@ docker compose up -d
 docker compose logs -f
 ```
 
+# Method 2: Install using SystemD
+
+## Prepare your environment variables
+
+- `ETH_PRIVATE_KEY`: Your Ethereum private key (used for signing)
+- `VPS_IP`: Your VPS public IP address (just the IP, no protocol or port)
+- Use **Hoodi RPC URLs**:
+
+```
+https://ethereum-hoodi-rpc.publicnode.com
+```
+
+Backup URL can be the same or a different one if you have it.
 
 ---
 
-## Register Your Operator
+## Create the SystemD service file
+
+Run this command in terminal **after replacing** `PV_KEY` with your private key, and `VPS_IP` with your VPS IP:
+
+```bash
+sudo tee /etc/systemd/system/drosera.service > /dev/null <<EOF
+[Unit]
+Description=drosera node service
+After=network-online.target
+
+[Service]
+User=$USER
+Restart=always
+RestartSec=15
+LimitNOFILE=65535
+ExecStart=$(which drosera-operator) node --db-file-path $HOME/.drosera.db --network-p2p-port 31313 --server-port 31314 \
+    --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
+    --eth-backup-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
+    --drosera-address 0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D \
+    --eth-private-key PV_KEY \
+    --listen-address 0.0.0.0 \
+    --network-external-p2p-address VPS_IP \
+    --disable-dnr-confirmation true \
+    --eth-chain-id 560048
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+---
+
+## Reload systemd and start the service
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable drosera
+sudo systemctl start drosera
+```
+
+---
+
+## Check & Control Node
+
+```bash
+# Follow logs live
+journalctl -u drosera.service -f
+
+# Check node service status
+sudo systemctl status drosera
+
+# Stop the node service
+sudo systemctl stop drosera
+
+# Restart the node service
+sudo systemctl restart drosera
+
+```
+---
+
+## Register your Operator
 
 ```bash
 drosera-operator register \
