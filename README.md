@@ -180,6 +180,7 @@ whitelist = ["YOUR_OPERATOR_WALLET_ADDRESS"]
 ```bash
 DROSERA_PRIVATE_KEY=your_eth_private_key_here drosera apply
 ```
+## After apply it will generate address automatically (New users)
 ![drosera toml](Asset/drosera%20toml.png)
 ---
 
