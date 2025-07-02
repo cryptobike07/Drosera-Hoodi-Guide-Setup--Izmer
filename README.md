@@ -252,9 +252,9 @@ VPS_IP=your_vps_public_ip_here
 
 ```bash
 docker pull ghcr.io/drosera-network/drosera-operator:latest
+```
 
-### Compose & Start Operator
-
+## Compose & Run Operator
 ```bash
 # Stop & remove existing Docker volumes (clean start)
 docker compose down -v
