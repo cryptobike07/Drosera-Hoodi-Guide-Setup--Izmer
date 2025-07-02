@@ -114,6 +114,11 @@ forge build
 ```
 
 ---
+### Edit Trap Configuration
+
+```bash
+cd ~/my-drosera-trap
+nano drosera.toml
 
 ## Trap Configuration (`drosera.toml`)
 
@@ -196,7 +201,13 @@ drosera-operator --version
 Check for latest releases here:\
 [https://github.com/drosera-network/releases/releases](https://github.com/drosera-network/releases/releases)
 
-### Docker Compose (docker-compose.yml)
+###  Edit `docker-compose.yaml`
+
+```bash
+cd ~/Drosera-Network
+nano docker-compose.yaml
+
+## Docker Compose (docker-compose.yml)
 
 ```yaml
 version: '3'
