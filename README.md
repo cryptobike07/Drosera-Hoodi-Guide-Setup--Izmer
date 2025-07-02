@@ -180,6 +180,7 @@ whitelist = ["YOUR_OPERATOR_WALLET_ADDRESS"]
 ```bash
 DROSERA_PRIVATE_KEY=your_eth_private_key_here drosera apply
 ```
+![drosera toml](Asset/drosera%20toml.png)
 ---
 
 ## Check Trap in Dashboard
@@ -189,10 +190,11 @@ Connect your Drosera EVM wallet\
 Change network to Hoodi\
 Search your trap by wallet address or trap config address generated after applying\
 You can send Bloom Boost or monitor your trap here
+![change network](Asset/change%20network.png)
 
 ---
 
-## Bloom Boost Trap
+## Bloom Boost Trap (use dashboard instead [click here](#configure-through-dashboard-instead))
 
 Drosera lets you increase your trap’s priority on-chain by depositing Hoodie ETH to boost response speed.
 
@@ -303,7 +305,7 @@ drosera-operator register \
   --drosera-address 0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
 ```
 
-## Opt-in your trap config
+## Opt-in your trap config (use dashboard instead [click here](#configure-through-dashboard-instead))
 
 ```bash
 drosera-operator optin \
@@ -325,6 +327,9 @@ sudo ufw enable
 ```
 
 ---
+## Configure through dashboard instead
+Go to [https://app.drosera.io/](https://app.drosera.io/)\
+![configure through dashboard](Asset/configure%20through%20dashboard.png)
 
 ## Useful Commands & Updates
 
