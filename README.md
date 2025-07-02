@@ -234,6 +234,11 @@ Create a `.env` file in the same folder as your `docker-compose.yml`:
 ETH_PRIVATE_KEY=your_eth_private_key_here
 VPS_IP=your_vps_public_ip_here
 ```
+### Install Docker Image
+
+```bash
+docker pull ghcr.io/drosera-network/drosera-operator:latest
+
 ### Compose & Start Operator
 
 ```bash
