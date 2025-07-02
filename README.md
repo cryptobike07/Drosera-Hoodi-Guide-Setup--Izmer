@@ -31,6 +31,28 @@ This repository documents the setup and deployment of a **Drosera Trap** and a *
 - Open ports: `31313` and `31314` (or your configured ports)
 
 ---
+## 💸 Cheapest VPS Hosting Deals under 3$ per month (Perfect for Testnets & Lightweight Nodes)
+
+Looking for ultra-budget VPS options Here are two solid picks used by many in the blockchain and dev community:
+
+🔥 **RackNerd** – Reliable low-cost KVM VPS with locations worldwide  
+➡️ [Explore RackNerd Offers](https://my.racknerd.com/aff.php?aff=14994) <!-- hidden referral -->
+
+💰 **HostVDS** – Russian-based affordable VPS with custom configuration  
+➡️ [Check HostVDS Plans](https://hostvds.com/?affiliate_uuid=f3d517f2-6e58-4549-9ecd-d280fa8cea3c) <!-- hidden referral -->
+
+> 🧠 Tip: Always choose a VPS with at least `1 CPU`, `1 GB RAM`, and `10-20 GB SSD` for basic testnet node operation.
+
+---
+
+✅ Great for:
+- Running lightweight validator or RPC nodes
+- Experimenting with testnets
+- Hosting low-traffic services
+
+🌍 Suitable for developers on a tight budget or running long-term nodes with minimal cost.
+
+
 ## Hoodi Testnet ETH (Hoodi Token)
 
 To mine or interact with contracts on the Hoodi Testnet, you'll need test ETH:
