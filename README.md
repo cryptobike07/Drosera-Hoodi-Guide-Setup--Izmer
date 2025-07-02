@@ -31,7 +31,7 @@ This repository documents the setup and deployment of a **Drosera Trap** and a *
 - Open ports: `31313` and `31314` (or your configured ports)
 
 ---
-# Hoodi Testnet ETH (Hoodi Token)
+## Hoodi Testnet ETH (Hoodi Token)
 
 To mine or interact with contracts on the Hoodi Testnet, you'll need test ETH:
 
@@ -96,7 +96,7 @@ sudo docker run hello-world
 
 ---
 
-## 1.Drosera Trap Setup
+# 1.Drosera Trap Setup
 
 ### Install Required Tools
 
@@ -207,7 +207,7 @@ drosera bloomboost --trap-address <trap_address> --eth-amount <amount>
 
 ---
 
-## 2.Drosera Operator Setup
+# 2.Drosera Operator Setup
 
 ### Create Drosera Network Folder
 
