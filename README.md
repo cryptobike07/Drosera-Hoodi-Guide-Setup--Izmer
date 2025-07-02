@@ -140,7 +140,7 @@ forge build
 ### Edit Trap Configuration
 
 ```bash
-cd my-drosera-trap
+cd ~/my-drosera-trap
 nano drosera.toml
 ```
 Add the following codes at `drosera.toml`:
