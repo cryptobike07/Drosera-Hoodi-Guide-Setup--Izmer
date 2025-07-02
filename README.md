@@ -31,6 +31,28 @@ This repository documents the setup and deployment of a **Drosera Trap** and a *
 - Open ports: `31313` and `31314` (or your configured ports)
 
 ---
+# Hoodi Testnet ETH (Hoodie Token)
+
+To mine or interact with contracts on the Hoodi Testnet, you'll need test ETH:
+
+---
+
+## 🛠️ Faucet Links
+
+### 🔨 Mining Faucet:
+[https://hoodi-faucet.pk910.de](https://hoodi-faucet.pk910.de)
+
+### 💧 Public Faucets:
+- [QuickNode Faucet](https://faucet.quicknode.com/ethereum/hoodi)  
+- [Stakely Faucet](https://stakely.io/faucet/ethereum-hoodi-testnet-eth)
+
+---
+
+## 🔗 Hoodi Testnet Details
+
+For more on the Hoodi testnet RPC, endpoints, and setup guides, refer to:  
+👉 [https://github.com/eth-clients/hoodi](https://github.com/eth-clients/hoodi)
+
 
 ## Install Dependencies
 
