@@ -153,7 +153,7 @@ whitelist = ["YOUR_OPERATOR_WALLET_ADDRESS"]
 
 ---
 
-## Apply the Trap Config (New user) / Re-apply (Existing user)
+## Apply the Trap Config (New users) / Re-apply (Existing users)
 
 ```bash
 DROSERA_PRIVATE_KEY=your_eth_private_key_here drosera apply
