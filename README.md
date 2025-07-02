@@ -141,23 +141,23 @@ min_number_of_operators = 1
 max_number_of_operators = 2
 block_sample_size = 10
 private_trap = true
-
 whitelist = ["YOUR_OPERATOR_WALLET_ADDRESS"]
 
-# address = "DELETE THIS LINE WHEN APPLYING"
+# New Users:
+# address = "DELETE THIS LINE WHEN APPLYING" (it will generate address after apply trap config)
+
 # Existing Users:
-# If you've deployed a trap with your wallet previously, add your trap address here:
+# If you've deployed a trap with your wallet previously (Hoodi not Holesky), add your trap address here:
 # address = "TRAP_ADDRESS"
 ```
 
 ---
 
-## Apply the Trap Config
+## Apply the Trap Config (New user) / Re-apply (Existing user)
 
 ```bash
 DROSERA_PRIVATE_KEY=your_eth_private_key_here drosera apply
 ```
-
 ---
 
 ## Check Trap in Dashboard
