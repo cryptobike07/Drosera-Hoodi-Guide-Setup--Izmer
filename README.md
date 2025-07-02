@@ -193,7 +193,6 @@ cd ~/Drosera-Network
 
 ### Download & Install Operator CLI
 ```bash
-cd ~
 curl -LO https://github.com/drosera-network/releases/releases/download/v1.20.0/drosera-operator-v1.20.0-x86_64-unknown-linux-gnu.tar.gz
 tar -xvf drosera-operator-v1.20.0-x86_64-unknown-linux-gnu.tar.gz
 sudo cp drosera-operator /usr/bin/
