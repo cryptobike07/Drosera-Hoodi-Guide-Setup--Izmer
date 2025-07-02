@@ -74,7 +74,7 @@ sudo docker run hello-world
 
 ---
 
-## Drosera Trap Setup
+## 1.Drosera Trap Setup
 
 ### Install Required Tools
 
@@ -175,7 +175,7 @@ drosera bloomboost --trap-address <trap_address> --eth-amount <amount>
 
 ---
 
-## Drosera Operator Setup
+## 2.Drosera Operator Setup
 
 ### Create Drosera Network Folder
 
