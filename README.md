@@ -31,7 +31,7 @@ This repository documents the setup and deployment of a **Drosera Trap** and a *
 - Open ports: `31313` and `31314` (or your configured ports)
 
 ---
-# Hoodi Testnet ETH (Hoodie Token)
+# Hoodi Testnet ETH (Hoodi Token)
 
 To mine or interact with contracts on the Hoodi Testnet, you'll need test ETH:
 
