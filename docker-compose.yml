@@ -1,0 +1,25 @@
+version: '3'
+services:
+  drosera-operator:
+    image: ghcr.io/drosera-network/drosera-operator:v1.20.0
+    container_name: drosera-operator
+    network_mode: host
+    environment:
+      - DRO__DB_FILE_PATH=/data/drosera.db
+      - DRO__DROSERA_ADDRESS=0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
+      - DRO__LISTEN_ADDRESS=0.0.0.0
+      - DRO__DISABLE_DNR_CONFIRMATION=true
+      - DRO__ETH__CHAIN_ID=560048
+      - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__BACKUP_RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__PRIVATE_KEY=${ETH_PRIVATE_KEY}
+      - DRO__NETWORK__P2P_PORT=31313
+      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${VPS_IP}
+      - DRO__SERVER__PORT=31314
+    volumes:
+      - drosera_data:/data
+    command: ["node"]
+    restart: always
+
+volumes:
+  drosera_data:
