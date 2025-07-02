@@ -203,14 +203,14 @@ drosera-operator --version
 Check for latest releases here:\
 [https://github.com/drosera-network/releases/releases](https://github.com/drosera-network/releases/releases)
 
-###  Edit `docker-compose.yml`
+###  Edit `docker-compose.yaml`
 
 Edit `docker-compose.yaml` file:
 ```bash
 nano docker-compose.yaml
 ```
 
-## Docker Compose (docker-compose.yml)
+## Docker Compose (docker-compose.yaml)
 
 ```yaml
 version: '3'
@@ -242,7 +242,7 @@ volumes:
 
 ### Create .env file
 
-Create a `.env` file in the same folder as your `docker-compose.yml`:
+Create a `.env` file in the same folder as your `docker-compose.yaml`:
 
 ```env
 ETH_PRIVATE_KEY=your_eth_private_key_here
