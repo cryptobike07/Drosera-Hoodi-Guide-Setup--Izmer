@@ -166,7 +166,7 @@ block_sample_size = 10
 private_trap = true
 whitelist = ["YOUR_OPERATOR_WALLET_ADDRESS"]
 
-# New Users:
+# New Users/Migrate:
 # address = "DELETE THIS LINE WHEN APPLYING" (it will generate address after apply trap config)
 
 # Existing Users:
@@ -176,12 +176,12 @@ whitelist = ["YOUR_OPERATOR_WALLET_ADDRESS"]
 
 ---
 
-### Apply the Trap Config (New users) / Re-apply (Existing users)
+### Apply the Trap Config (New users/Migrate) / Re-apply (Existing users)
 
 ```bash
 DROSERA_PRIVATE_KEY=your_eth_private_key_here drosera apply
 ```
-### After apply it will generate address automatically (New users)
+### After apply it will generate address automatically (New users/Migrate)
 ![drosera toml](Asset/drosera%20toml.png)
 ---
 
