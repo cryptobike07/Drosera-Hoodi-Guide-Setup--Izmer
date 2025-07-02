@@ -419,7 +419,7 @@ sudo ufw enable
 Go to [https://app.drosera.io/](https://app.drosera.io/)\
 ![configure through dashboard](Asset/configure%20through%20dashboard.png)
 
-# Useful Commands & Updates
+## Useful Commands & Updates
 
 ```bash
 # View operator logs
