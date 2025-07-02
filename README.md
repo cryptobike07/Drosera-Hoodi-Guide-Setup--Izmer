@@ -198,7 +198,7 @@ You can send Bloom Boost or monitor your trap here
 
 ### Bloom Boost Trap (use dashboard instead [click here](#configure-through-dashboard-instead))
 
-Drosera lets you increase your trap’s priority on-chain by depositing Hoodie ETH to boost response speed.
+Drosera lets you increase your trap’s priority on-chain by depositing Hoodi ETH to boost response speed.
 
 To boost a trap:
 
