@@ -177,6 +177,12 @@ drosera bloomboost --trap-address <trap_address> --eth-amount <amount>
 
 ## Drosera Operator Setup
 
+### Create Drosera Network Folder
+
+```bash
+mkdir ~/Drosera-Network
+cd ~/Drosera-Network
+
 ### Download & Install Operator CLI
 
 ```bash
@@ -228,6 +234,23 @@ Create a `.env` file in the same folder as your `docker-compose.yml`:
 ETH_PRIVATE_KEY=your_eth_private_key_here
 VPS_IP=your_vps_public_ip_here
 ```
+### Compose & Start Operator
+
+```bash
+# Stop & remove existing Docker volumes (clean start)
+docker compose down -v
+
+# Stop and remove any old container named 'drosera-node' (if exists)
+docker stop drosera-node
+docker rm drosera-node
+
+# Start the operator in detached mode
+docker compose up -d
+
+# View live logs
+docker compose logs -f
+```
+
 
 ---
 
