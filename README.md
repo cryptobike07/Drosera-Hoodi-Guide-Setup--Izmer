@@ -37,7 +37,7 @@ To mine or interact with contracts on the Hoodi Testnet, you'll need test ETH:
 
 ---
 
-## 🛠️ Faucet Links
+### 🛠️ Faucet Links
 
 ### 🔨 Mining Faucet:
 [https://hoodi-faucet.pk910.de](https://hoodi-faucet.pk910.de)
@@ -48,7 +48,7 @@ To mine or interact with contracts on the Hoodi Testnet, you'll need test ETH:
 
 ---
 
-## 🔗 Hoodi Testnet Details
+### 🔗 Hoodi Testnet Details
 
 For more on the Hoodi testnet RPC, endpoints, and setup guides, refer to:  
 👉 [https://github.com/eth-clients/hoodi](https://github.com/eth-clients/hoodi)
@@ -96,7 +96,7 @@ sudo docker run hello-world
 
 ---
 
-# 1.Drosera Trap Setup
+# 1. Drosera Trap Setup
 
 ### Install Required Tools
 
@@ -144,7 +144,7 @@ nano drosera.toml
 ```
 Add the following codes at `drosera.toml`:
 
-## Trap Configuration (`drosera.toml`)
+### Trap Configuration (`drosera.toml`)
 
 ```toml
 ethereum_rpc = "https://ethereum-hoodi-rpc.publicnode.com"
@@ -175,16 +175,16 @@ whitelist = ["YOUR_OPERATOR_WALLET_ADDRESS"]
 
 ---
 
-## Apply the Trap Config (New users) / Re-apply (Existing users)
+### Apply the Trap Config (New users) / Re-apply (Existing users)
 
 ```bash
 DROSERA_PRIVATE_KEY=your_eth_private_key_here drosera apply
 ```
-## After apply it will generate address automatically (New users)
+### After apply it will generate address automatically (New users)
 ![drosera toml](Asset/drosera%20toml.png)
 ---
 
-## Check Trap in Dashboard
+### Check Trap in Dashboard
 
 Go to [https://app.drosera.io/](https://app.drosera.io/)\
 Connect your Drosera EVM wallet\
@@ -195,7 +195,7 @@ You can send Bloom Boost or monitor your trap here
 
 ---
 
-## Bloom Boost Trap (use dashboard instead [click here](#configure-through-dashboard-instead))
+### Bloom Boost Trap (use dashboard instead [click here](#configure-through-dashboard-instead))
 
 Drosera lets you increase your trap’s priority on-chain by depositing Hoodie ETH to boost response speed.
 
@@ -207,8 +207,8 @@ drosera bloomboost --trap-address <trap_address> --eth-amount <amount>
 
 ---
 
-# 2.Drosera Operator Setup
-# A. Choose Docker or SystemD
+# 2. Drosera Operator Setup
+## A. Choose Docker or SystemD
 
 Choose one Installation Method:
 
@@ -229,7 +229,7 @@ Edit `docker-compose.yaml` file:
 nano docker-compose.yaml
 ```
 
-## Docker Compose (docker-compose.yaml)
+### Docker Compose (docker-compose.yaml)
 
 ```yaml
 version: '3'
@@ -273,7 +273,7 @@ VPS_IP=your_vps_public_ip_here
 docker pull ghcr.io/drosera-network/drosera-operator:latest
 ```
 
-## Compose & Run Operator
+### Compose & Run Operator
 ```bash
 # Stop & remove existing Docker volumes (clean start)
 docker compose down -v
@@ -291,7 +291,7 @@ docker compose logs -f
 
 # Method 2: Install using SystemD
 
-## Remove Old Drosera SystemD Service (if any)
+### Remove Old Drosera SystemD Service (if any)
 
 Before creating a new systemd service for Drosera, stop, disable, and remove any old service to avoid conflicts:
 ```bash
@@ -310,7 +310,7 @@ sudo systemctl daemon-reload
 
 ---
 
-## Prepare your environment variables
+### Prepare your environment variables
 
 - `ETH_PRIVATE_KEY`: Your Ethereum private key (used for signing)
 - `VPS_IP`: Your VPS public IP address (just the IP, no protocol or port)
@@ -324,7 +324,7 @@ Backup URL can be the same or a different one if you have it.
 
 ---
 
-## Create the SystemD service file
+### Create the SystemD service file
 
 Run this command in terminal **after replacing** `PV_KEY` with your private key, and `VPS_IP` with your VPS IP:
 
@@ -356,7 +356,7 @@ EOF
 
 ---
 
-## Reload systemd and start the service
+### Reload systemd and start the service
 
 ```bash
 sudo systemctl daemon-reload
@@ -366,7 +366,7 @@ sudo systemctl start drosera
 
 ---
 
-## Check & Control Node
+### Check & Control Node
 
 ```bash
 # Follow logs live
