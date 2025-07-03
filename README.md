@@ -455,7 +455,7 @@ Drosera Operator folder: `~/Drosera-Network`
 Official docs: [https://dev.drosera.io/](https://dev.drosera.io/)\
 Discord: [https://discord.com/invite/drosera](https://discord.com/invite/drosera)
 
-## GET CADET ROLE DISCORD (HOODI VERSION YEHOOOO) 🟥🧑‍✈️
+## GET CADET ROLE DISCORD (HOODI VERSION YEHOOOO) 🟥![cadet role](Asset/cadet%20role.png)
 
 Assuming your Trap is deployed and your operator is running, let's set up a new Trap to submit your Discord username on-chain and unlock an exclusive Cadet role.
 
@@ -616,7 +616,7 @@ source /root/.bashrc
 cast call 0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608 "getDiscordNamesBatch(uint256,uint256)(string[])" 0 2000 --rpc-url https://ethereum-hoodi-rpc.publicnode.com
 ```
 ---
-
+![discord username](Asset/discord%20username%20izmers.png)
 
 ## 💸 Cheapest VPS Hosting Deals under 3$ per month (Perfect for Testnets & Lightweight Nodes)
 
