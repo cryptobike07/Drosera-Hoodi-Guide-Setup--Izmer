@@ -579,7 +579,7 @@ drosera dryrun
 DROSERA_PRIVATE_KEY=xxx drosera apply
 ```
 
-Replace `xxx` with your EVM wallet private key (Ensure it's funded with Holesky ETH).  
+Replace `xxx` with your EVM wallet private key (Ensure it's funded with Hoodi ETH).  
 When prompted, write **ofc** and press Enter.
 
 ---
