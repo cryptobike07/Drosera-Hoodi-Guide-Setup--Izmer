@@ -236,7 +236,7 @@ nano docker-compose.yaml
 version: '3'
 services:
   drosera-operator:
-    image: ghcr.io/drosera-network/drosera-operator:v1.20.0
+    image: ghcr.io/drosera-network/drosera-operator:latest
     container_name: drosera-operator
     network_mode: host
     environment:
