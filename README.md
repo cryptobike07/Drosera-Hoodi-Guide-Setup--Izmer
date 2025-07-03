@@ -262,7 +262,7 @@ volumes:
 
 ### Create .env file
 
-Create a `.env` file in the same folder as your `docker-compose.yaml`:
+Create a `nano .env` file in the same folder as your `docker-compose.yaml`:
 
 ```env
 ETH_PRIVATE_KEY=your_eth_private_key_here
