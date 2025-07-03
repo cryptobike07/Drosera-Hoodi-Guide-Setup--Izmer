@@ -415,8 +415,13 @@ sudo ufw allow 31313/tcp
 sudo ufw allow 31314/tcp
 sudo ufw enable
 ```
-# EVERYTHING IS PERFECT IF YOU FOLLOW ACCORDINGLY !!! WELCOME HOODI !
+# 🟩🟩EVERYTHING IS PERFECT! WELCOME ON HOODI !🟩🟩
+
+HELLO WORLD TRAP (light green)
 ![Drosera Hoodie One](Asset/hoodie%20one.png)
+---
+[DISCORD TRAP (dark green) (cadet role, click here)](#get-cadet-role-discord)
+![Cadet Dark Green](Asset/cadet%20dark%20green.png)
 ---
 # Configure through dashboard instead
 Go to [https://app.drosera.io/](https://app.drosera.io/)\
@@ -457,6 +462,7 @@ Drosera Operator folder: `~/Drosera-Network`
 Official docs: [https://dev.drosera.io/](https://dev.drosera.io/)\
 Discord: [https://discord.com/invite/drosera](https://discord.com/invite/drosera)
 
+<a name="get-cadet-role-discord"></a>
 ## GET CADET ROLE DISCORD (HOODI VERSION YEHOOOO) 🟥![cadet role](Asset/cadet%20role.png)
 
 Assuming your Trap is deployed and your operator is running, let's set up a new Trap to submit your Discord username on-chain and unlock an exclusive Cadet role.
