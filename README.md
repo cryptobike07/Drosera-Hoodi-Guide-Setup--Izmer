@@ -455,6 +455,169 @@ Drosera Operator folder: `~/Drosera-Network`
 Official docs: [https://dev.drosera.io/](https://dev.drosera.io/)\
 Discord: [https://discord.com/invite/drosera](https://discord.com/invite/drosera)
 
+## GET CADET ROLE DISCORD (HOODI VERSION YEHOOOO) 🟥🧑‍✈️
+
+Assuming your Trap is deployed and your operator is running, let's set up a new Trap to submit your Discord username on-chain and unlock an exclusive Cadet role.
+
+---
+
+### 1. Create New Trap
+
+#### 1- Move to your trap directory:
+
+```bash
+cd ~/my-drosera-trap
+```
+
+#### 2- Create a new Trap.sol file:
+
+```bash
+nano src/Trap.sol
+```
+
+#### 3- Paste the following contract code in it:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import {ITrap} from "drosera-contracts/interfaces/ITrap.sol";
+
+interface IMockResponse {
+    function isActive() external view returns (bool);
+}
+
+contract Trap is ITrap {
+    // Updated response contract address
+    address public constant RESPONSE_CONTRACT = 0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608;
+    string constant discordName = "YOURDISCORD"; // Replace with your Discord username
+
+    function collect() external view returns (bytes memory) {
+        bool active = IMockResponse(RESPONSE_CONTRACT).isActive();
+        return abi.encode(active, discordName);
+    }
+
+    function shouldRespond(bytes[] calldata data) external pure returns (bool, bytes memory) {
+        (bool active, string memory name) = abi.decode(data[0], (bool, string));
+        if (!active || bytes(name).length == 0) {
+            return (false, bytes(""));
+        }
+
+        return (true, abi.encode(name));
+    }
+}
+```
+
+Replace `YOURDISCORD` with your Discord username.  
+To save: **Ctrl+X**, then **Y**, and **Enter**
+
+---
+
+### 2. Edit `drosera.toml` config
+
+```bash
+nano drosera.toml
+```
+
+Modify the values of the specified variables as follows:
+
+```toml
+path = "out/Trap.sol/Trap.json"
+response_contract = "0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608"
+response_function = "respondWithDiscordName(string)"
+
+ethereum_rpc = "https://ethereum-hoodi-rpc.publicnode.com"
+drosera_rpc = "https://relay.hoodi.drosera.io"
+eth_chain_id = 560048
+drosera_address = "0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D"
+
+[traps]
+
+[traps.mytrap]
+path = "out/Trap.sol/Trap.json"
+response_contract = "0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608"
+response_function = "respondWithDiscordName(string)"
+cooldown_period_blocks = 33
+min_number_of_operators = 1
+max_number_of_operators = 2
+block_sample_size = 10
+private_trap = true
+whitelist = ["YOUR_OPERATOR_ADDRESS"]
+address = "YOUR_TRAP_CONFIG_ADDRESS"
+```
+
+Your final `drosera.toml` file should match the example shown above.
+
+---
+
+### 3. Deploy Trap
+
+#### 1- Compile your Trap's Contract:
+
+```bash
+forge build
+```
+
+If you get errors like: **command not found**, enter:
+
+```bash
+source /root/.bashrc
+```
+
+or reinstall dependencies from [here].
+
+#### 2- Test the trap before deploying:
+
+```bash
+drosera dryrun
+```
+
+#### 3- Apply and Deploy the Trap:
+
+```bash
+DROSERA_PRIVATE_KEY=xxx drosera apply
+```
+
+Replace `xxx` with your EVM wallet private key (Ensure it's funded with Holesky ETH).  
+When prompted, write **ofc** and press Enter.
+
+---
+
+### 4. Verify Trap can respond
+
+After the trap is deployed, check if the user has responded by calling the `isResponder` function on the response contract.
+
+```bash
+source /root/.bashrc
+cast call 0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608 "isResponder(address)(bool)" OWNER_ADDRESS --rpc-url https://ethereum-hoodi-rpc.publicnode.com
+```
+
+Replace `OWNER_ADDRESS` with your Trap's owner address (your main address that deployed the Trap's contract).  
+If you receive `true` as a response, it means you have successfully completed all the steps.
+
+> It may take a few minutes to successfully receive `true` as a response.
+
+---
+
+### 5. Re-run Operator nodes
+
+```bash
+cd
+cd ~/Drosera-Network
+docker compose up -d
+```
+
+---
+
+### 6. View the List of submitted Discord Names
+
+```bash
+source /root/.bashrc
+cast call 0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608 "getDiscordNamesBatch(uint256,uint256)(string[])" 0 2000 --rpc-url https://ethereum-hoodi-rpc.publicnode.com
+```
+---
+
+
 ## 💸 Cheapest VPS Hosting Deals under 3$ per month (Perfect for Testnets & Lightweight Nodes)
 
 Looking for ultra-budget VPS options Here are two solid picks used by many in the blockchain and dev community:
