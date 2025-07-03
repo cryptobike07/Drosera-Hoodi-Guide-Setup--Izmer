@@ -230,7 +230,8 @@ Edit `docker-compose.yaml` file:
 nano docker-compose.yaml
 ```
 
-### Docker Compose (docker-compose.yaml)
+### Docker Compose (docker-compose.yaml) 🔴 **DON'T PUT PRIVATE KEY AND VPS IP HERE — create `.env` file**
+
 
 ```yaml
 version: '3'
