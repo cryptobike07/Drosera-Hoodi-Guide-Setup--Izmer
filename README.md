@@ -415,7 +415,8 @@ sudo ufw allow 31313/tcp
 sudo ufw allow 31314/tcp
 sudo ufw enable
 ```
-
+# EVERYTHING IS PERFECT IF YOU FOLLOW ACCORDINGLY !!! WELCOME HOODI !
+![Drosera Hoodie One](Asset/hoodie%20one.png)
 ---
 # Configure through dashboard instead
 Go to [https://app.drosera.io/](https://app.drosera.io/)\
