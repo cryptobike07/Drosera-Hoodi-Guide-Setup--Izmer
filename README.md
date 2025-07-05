@@ -548,7 +548,7 @@ volumes:
   op2_data:
 ```
 
-`.env` file:
+`nano .env` file:
 ```env
 SERVER_IP=your.server.ip
 OP1_KEY=operator1_private_key
