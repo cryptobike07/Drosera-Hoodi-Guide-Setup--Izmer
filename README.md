@@ -547,8 +547,8 @@ volumes:
   op1_data:
   op2_data:
 ```
-
-`nano .env` file:
+`cd ~/Drosera-Network
+nano .env` file:
 ```env
 SERVER_IP=your.server.ip
 OP1_KEY=operator1_private_key
