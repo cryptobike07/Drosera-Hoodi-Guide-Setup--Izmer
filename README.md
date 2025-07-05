@@ -488,9 +488,7 @@ nano ~/my-drosera-trap/drosera.toml
 private_trap = true
 whitelist = ["0xOperator1Address", "0xOperator2Address"]
 
-[chain]
-chain_id = 560048 # Hoodi Network
-rpc_url = "https://ethereum-hoodi-rpc.publicnode.com"
+#Add operator 1 and operator 2 address accordingly
 ```
 
 Apply changes:
@@ -512,7 +510,10 @@ drosera-operator register \
 ```
 
 ## 3. Docker Setup
-`docker-compose.yml`:
+```bash
+nano ~/Drosera-Network/docker-compose.yaml
+```
+`docker-compose.yaml`:
 ```yaml
 version: '3'
 services:
@@ -558,9 +559,10 @@ OP2_KEY=operator2_private_key
 ```bash
 docker compose up -d
 docker logs operator1 --tail 50
+docker logs operator2 --tail 50
 ```
 
-## 5. Opt-In Operators
+## 5. Opt-In Operators 1 & 2
 ```bash
 drosera-operator optin \
   --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
