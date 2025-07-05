@@ -478,6 +478,97 @@ sudo iptables -t nat -A POSTROUTING -j MASQUERADE
 ✅ **Tip:** Always restart UFW or reload iptables rules after editing  
 ✅ **Tip:** You can also monitor traffic with `tcpdump` or `nload` for debugging
 
+# Drosera Network Multi-Operator Setup (Hoodi Network)
+
+## 1. Configure Trap
+```bash
+nano ~/my-drosera-trap/drosera.toml
+```
+```toml
+private_trap = true
+whitelist = ["0xOperator1Address", "0xOperator2Address"]
+
+[chain]
+chain_id = 560048 # Hoodi Network
+rpc_url = "https://ethereum-hoodi-rpc.publicnode.com"
+```
+
+Apply changes:
+```bash
+DROSERA_PRIVATE_KEY=your_trap_key drosera apply --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com
+```
+
+## 2. Register Operators
+```bash
+# Operator 1
+drosera-operator register \
+  --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
+  --eth-private-key YOUR_OPERATOR1_KEY
+
+# Operator 2  
+drosera-operator register \
+  --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
+  --eth-private-key YOUR_OPERATOR2_KEY
+```
+
+## 3. Docker Setup
+`docker-compose.yml`:
+```yaml
+version: '3'
+services:
+  operator1:
+    image: ghcr.io/drosera-network/drosera-operator:latest
+    network_mode: host
+    environment:
+      - DRO__ETH__CHAIN_ID=560048
+      - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__PRIVATE_KEY=${OP1_KEY}
+      - DRO__NETWORK__P2P_PORT=31313
+      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${SERVER_IP}
+    volumes:
+      - op1_data:/data
+    restart: unless-stopped
+
+  operator2:
+    image: ghcr.io/drosera-network/drosera-operator:latest  
+    network_mode: host
+    environment:
+      - DRO__ETH__CHAIN_ID=560048
+      - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__PRIVATE_KEY=${OP2_KEY}
+      - DRO__NETWORK__P2P_PORT=31315  
+      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${SERVER_IP}
+    volumes:
+      - op2_data:/data
+    restart: unless-stopped
+
+volumes:
+  op1_data:
+  op2_data:
+```
+
+`.env` file:
+```env
+SERVER_IP=your.server.ip
+OP1_KEY=operator1_private_key
+OP2_KEY=operator2_private_key
+```
+
+## 4. Launch & Verify
+```bash
+docker compose up -d
+docker logs operator1 --tail 50
+```
+
+## 5. Opt-In Operators
+```bash
+drosera-operator optin \
+  --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
+  --eth-private-key OPERATOR_KEY \
+  --trap-config-address YOUR_TRAP_ADDRESS
+```
+
+
 # Configure through dashboard instead
 Go to [https://app.drosera.io/](https://app.drosera.io/)\
 ![configure through dashboard](Asset/configure%20through%20dashboard.png)
