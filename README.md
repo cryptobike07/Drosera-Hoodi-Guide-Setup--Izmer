@@ -505,7 +505,7 @@ drosera-operator register \
 
 # Operator 2  
 drosera-operator register \
-  --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
+  --eth-rpc-url https://rpc.hoodi.drosera.ankr.com \
   --eth-private-key YOUR_OPERATOR2_KEY
 ```
 
@@ -535,7 +535,7 @@ services:
     network_mode: host
     environment:
       - DRO__ETH__CHAIN_ID=560048
-      - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__RPC_URL=https://rpc.hoodi.drosera.ankr.com
       - DRO__ETH__PRIVATE_KEY=${OP2_KEY}
       - DRO__NETWORK__P2P_PORT=31315  
       - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${SERVER_IP}
