@@ -197,7 +197,7 @@ You can send Bloom Boost or monitor your trap here
 
 ---
 
-### Bloom Boost Trap (use dashboard instead [click here](#configure-through-dashboard-instead))
+### Bloom Boost Trap ([use dashboard instead click here](#configure-through-dashboard-instead))
 
 Drosera lets you increase your trap’s priority on-chain by depositing Hoodi ETH to boost response speed.
 
@@ -387,7 +387,7 @@ sudo systemctl restart drosera
 ```
 ---
 
-## B. Register your Operator
+## B. Register your Operator ([Failed to register ? click here](#-problem-register-operator-transaction-fails))
 
 ```bash
 drosera-operator register \
@@ -396,7 +396,7 @@ drosera-operator register \
   --drosera-address 0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
 ```
 
-## C. Opt-in your trap config (use dashboard instead [click here](#configure-through-dashboard-instead))
+## C. Opt-in your trap config ([use dashboard instead click here](#configure-through-dashboard-instead))
 
 ```bash
 drosera-operator optin \
@@ -478,6 +478,61 @@ sudo iptables -t nat -A POSTROUTING -j MASQUERADE
 
 ✅ **Tip:** Always restart UFW or reload iptables rules after editing  
 ✅ **Tip:** You can also monitor traffic with `tcpdump` or `nload` for debugging
+
+## ❗❗❗ Problem: Register Operator Transaction Fails❗❗❗
+
+When attempting to register the operator, the following error appears:
+
+```
+2025-07-09T11:32:03.370017Z  INFO drosera_operator::register: Registering operator's BLS public key into registry.
+Error: The Register transaction execution failed. Execution reverted. Reason: FunctionDoesNotExist
+```
+
+Even after running `droseraup`, the error still persists.
+
+---
+
+## ✅ Solution: Clean Reinstall Dependencies
+
+To resolve this, **completely remove all existing installations** and reinstall the required components from scratch.
+
+### 1. Remove Old Installations
+
+```bash
+rm -rf ~/.drosera ~/.foundry ~/.bun
+sed -i '/drosera\|foundry\|bun/d' ~/.bashrc ~/.profile
+```
+
+### 2. Reinstall Drosera CLI
+
+```bash
+curl -L https://app.drosera.io/install | bash
+echo 'export PATH="$HOME/.drosera/bin:$PATH"' >> ~/.bashrc
+```
+
+### 3. Reinstall Foundry
+
+```bash
+curl -L https://foundry.paradigm.xyz/ | bash
+echo 'export PATH="$HOME/.foundry/bin:$PATH"' >> ~/.bashrc
+```
+
+### 4. Reinstall Bun
+
+```bash
+curl -fsSL https://bun.sh/install | bash
+echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.bashrc
+```
+
+### 5. Apply Environment Changes
+
+```bash
+source ~/.bashrc
+exec bash
+```
+
+After this, re-run the operator setup. The error should be resolved if the environment is now correctly configured.
+
 
 # 🧑‍💻🧑‍💻Drosera Network Multi-Operator Setup (Hoodi Network)🧑‍💻🧑‍💻
 
@@ -583,7 +638,7 @@ docker logs operator1 --tail 50
 docker logs operator2 --tail 50
 ```
 
-## 6. Opt-In Operators 1 & 2
+## 6. Opt-In Operators 1 & 2 ([use dashboard instead click here](#configure-through-dashboard-instead))
 ```bash
 drosera-operator optin \
   --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
