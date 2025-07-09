@@ -491,8 +491,67 @@ Error: The Register transaction execution failed. Execution reverted. Reason: Fu
 Even after running `droseraup`, the error still persists.
 
 ---
+## A. Try these 2 solution
 
-## ✅ Solution: Clean Reinstall Dependencies
+Choose Update Operator cli or Clean Reinstall Dependencies:
+
+- [Solution 1: Update Operator CLI (click here)](#-solution-1-update-operator-cli)
+- [Solution 2: Clean Reinstall Dependencies (click here)](#-solution-clean-reinstall-dependencies)
+  
+## ✅ Solution 1: Update Operator cli
+
+You can manually install a stable version of the Drosera Operator CLI.
+
+### 🔽 1. Download v1.20.0 Release
+
+```bash
+cd ~
+curl -LO https://github.com/drosera-network/releases/releases/download/v1.20.0/drosera-operator-v1.20.0-x86_64-unknown-linux-gnu.tar.gz
+```
+
+> 📌 You can verify or get other versions here:  
+> https://github.com/drosera-network/releases/releases
+
+---
+
+### 📦 2. Extract the Archive
+
+```bash
+tar -xvf drosera-operator-v1.20.0-x86_64-unknown-linux-gnu.tar.gz
+```
+
+---
+
+### ✅ 3. Test the CLI (Optional)
+
+```bash
+./drosera-operator --version
+```
+
+You should see something like:
+```
+drosera-operator 1.20.0
+```
+
+---
+
+### 🚀 4. Install Globally
+
+```bash
+sudo cp drosera-operator /usr/bin
+```
+
+Now you can run it globally using:
+
+```bash
+drosera-operator
+```
+
+---
+
+This ensures you are using a known working version while bypassing any issues with `droseraup`.
+
+## ✅ Solution 2: Clean Reinstall Dependencies
 
 To resolve this, **completely remove all existing installations** and reinstall the required components from scratch.
 
