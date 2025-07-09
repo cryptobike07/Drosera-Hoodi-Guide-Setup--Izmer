@@ -493,7 +493,7 @@ whitelist = ["0xOperator1Address", "0xOperator2Address"]
 
 Apply changes:
 ```bash
-DROSERA_PRIVATE_KEY=your_trap_key drosera apply --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com
+DROSERA_PRIVATE_KEY=your_eth_private_key_here drosera apply --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com
 ```
 
 ## 2. Register Operators
@@ -557,8 +557,10 @@ volumes:
 
 
 ```
-`cd ~/Drosera-Network
-`nano .env` file:
+```bash
+nano ~/Drosera-Network/.env
+```
+`.env file`:
 ```env
 SERVER_IP=your.server.ip
 OP1_KEY=operator1_private_key
