@@ -478,7 +478,7 @@ sudo iptables -t nat -A POSTROUTING -j MASQUERADE
 ✅ **Tip:** Always restart UFW or reload iptables rules after editing  
 ✅ **Tip:** You can also monitor traffic with `tcpdump` or `nload` for debugging
 
-# Drosera Network Multi-Operator Setup (Hoodi Network)
+# 🧑‍💻🧑‍💻Drosera Network Multi-Operator Setup (Hoodi Network)🧑‍💻🧑‍💻
 
 ## 1. Configure Trap
 ```bash
@@ -579,6 +579,7 @@ drosera-operator optin \
   --eth-private-key OPERATOR_KEY \
   --trap-config-address YOUR_TRAP_ADDRESS
 ```
+![Dual Operator](Asset/2%20operator.png)
 
 
 # Configure through dashboard instead
