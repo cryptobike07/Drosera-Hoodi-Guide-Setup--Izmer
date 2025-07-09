@@ -387,7 +387,7 @@ sudo systemctl restart drosera
 ```
 ---
 
-## B. Register your Operator ([Failed to register ? click here](#-problem-register-operator-transaction-fails))
+## B. Register your Operator ([FAILED to register ? click here](#-problem-register-operator-transaction-fails))
 
 ```bash
 drosera-operator register \
@@ -604,7 +604,7 @@ docker run -it --rm ghcr.io/drosera-network/drosera-operator:latest register \
   --eth-chain-id 560048 \
   --eth-rpc-url https://0xrpc.io/hoodi \
   --drosera-address 0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D \
-  --eth-private-key Your_Wallet_Key
+  --eth-private-key YOUR_WALLET/OPERATOR_KEY
 ```
 
 🛡️ This is a clean and containerized way to run the `register` command without polluting your host machine with dependencies.
@@ -718,7 +718,7 @@ docker logs operator2 --tail 50
 ```bash
 drosera-operator optin \
   --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
-  --eth-private-key OPERATOR_KEY \
+  --eth-private-key YOUR_WALLET/OPERATOR_KEY \
   --trap-config-address YOUR_TRAP_ADDRESS
 ```
 ![Dual Operator](Asset/2%20operator.png)
