@@ -491,12 +491,13 @@ Error: The Register transaction execution failed. Execution reverted. Reason: Fu
 Even after running `droseraup`, the error still persists.
 
 ---
-## A. Try these 2 solution
+## A. Try these solution :
 
 Choose Update Operator cli or Clean Reinstall Dependencies:
 
 - [Solution 1: Update Operator CLI (click here)](#-solution-1-update-operator-cli)
 - [Solution 2: Clean Reinstall Dependencies (click here)](#-solution-clean-reinstall-dependencies)
+- [Solution 3: Use Docker for Registration (click here)](#-solution-3-use-docker-for-registration)
   
 ## ✅ Solution 1: Update Operator cli
 
@@ -594,6 +595,19 @@ After this, re-run the operator setup . The error should be resolved if the envi
 ```bash
 drosera-operator register
 ```
+## ✅ Solution 3: Use Docker for Registration
+
+If you're using Docker for the operator, you **don't need to install the CLI locally**. You can run the registration command directly inside Docker:
+
+```bash
+docker run -it --rm ghcr.io/drosera-network/drosera-operator:latest register \
+  --eth-chain-id 560048 \
+  --eth-rpc-url https://0xrpc.io/hoodi \
+  --drosera-address 0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D \
+  --eth-private-key Your_Wallet_Key
+```
+
+🛡️ This is a clean and containerized way to run the `register` command without polluting your host machine with dependencies.
 
 
 # 🧑‍💻🧑‍💻Drosera Network Multi-Operator Setup (Hoodi Network)🧑‍💻🧑‍💻
