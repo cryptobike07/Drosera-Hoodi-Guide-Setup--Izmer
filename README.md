@@ -526,23 +526,27 @@ services:
       - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
       - DRO__ETH__PRIVATE_KEY=${OP1_KEY}
       - DRO__NETWORK__P2P_PORT=31313
+      - DRO__SERVER__PORT=31314
       - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${SERVER_IP}
-      - DRO__LOG__LEVEL=info
+      - DRO__DISABLE_DNR_CONFIRMATION=true
+      - DRO__LOG__LEVEL=debug
     volumes:
       - op1_data:/data
     restart: unless-stopped
 
   operator2:
-    image: ghcr.io/drosera-network/drosera-operator:latest  
+    image: ghcr.io/drosera-network/drosera-operator:latest
     network_mode: host
     command: ["node"]
     environment:
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://rpc.hoodi.ethpandaops.io
       - DRO__ETH__PRIVATE_KEY=${OP2_KEY}
-      - DRO__NETWORK__P2P_PORT=31315  
+      - DRO__NETWORK__P2P_PORT=31315
+      - DRO__SERVER__PORT=31316
       - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${SERVER_IP}
-      - DRO__LOG__LEVEL=info
+      - DRO__DISABLE_DNR_CONFIRMATION=true
+      - DRO__LOG__LEVEL=debug
     volumes:
       - op2_data:/data
     restart: unless-stopped
@@ -550,6 +554,7 @@ services:
 volumes:
   op1_data:
   op2_data:
+
 
 ```
 `cd ~/Drosera-Network
