@@ -17,6 +17,7 @@ This repository documents the setup and deployment of a **Drosera Trap** and a *
 - [Drosera Operator Setup](#drosera-operator-setup)
 - [Register Your Operator](#register-your-operator)
 - [Firewall Configuration](#firewall-configuration)
+- [Multiple Operators Setup](#drosera-network-multi-operator-setup-hoodi-network)
 - [Useful Commands & Updates](#useful-commands--updates)
 - [Contact and Support](#contact-and-support)
 
@@ -566,15 +567,23 @@ SERVER_IP=your.server.ip
 OP1_KEY=operator1_private_key
 OP2_KEY=operator2_private_key
 ```
+## 4. Firewall Configuration for additional ports
 
-## 4. Launch & Verify
+```bash
+sudo ufw allow 31313/tcp
+sudo ufw allow 31314/tcp
+sudo ufw allow 31315/tcp
+sudo ufw allow 31316/tcp
+sudo ufw enable
+```
+## 5. Launch & Verify
 ```bash
 docker compose up -d
 docker logs operator1 --tail 50
 docker logs operator2 --tail 50
 ```
 
-## 5. Opt-In Operators 1 & 2
+## 6. Opt-In Operators 1 & 2
 ```bash
 drosera-operator optin \
   --eth-rpc-url https://ethereum-hoodi-rpc.publicnode.com \
