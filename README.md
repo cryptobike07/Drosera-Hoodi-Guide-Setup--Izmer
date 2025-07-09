@@ -544,7 +544,7 @@ sudo cp drosera-operator /usr/bin
 Now you can run it globally using:
 
 ```bash
-drosera-operator
+drosera-operator register
 ```
 
 ---
@@ -590,7 +590,10 @@ source ~/.bashrc
 exec bash
 ```
 
-After this, re-run the operator setup. The error should be resolved if the environment is now correctly configured.
+After this, re-run the operator setup . The error should be resolved if the environment is now correctly configured.
+```bash
+drosera-operator register
+```
 
 
 # 🧑‍💻🧑‍💻Drosera Network Multi-Operator Setup (Hoodi Network)🧑‍💻🧑‍💻
