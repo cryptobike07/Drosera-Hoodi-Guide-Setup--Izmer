@@ -831,10 +831,6 @@ nano drosera.toml
 Modify the values of the specified variables as follows:
 
 ```toml
-path = "out/Trap.sol/Trap.json"
-response_contract = "0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608"
-response_function = "respondWithDiscordName(string)"
-
 ethereum_rpc = "https://ethereum-hoodi-rpc.publicnode.com"
 drosera_rpc = "https://relay.hoodi.drosera.io"
 eth_chain_id = 560048
