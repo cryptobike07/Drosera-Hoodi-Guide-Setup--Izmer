@@ -2,8 +2,7 @@
 
 This repository documents the setup and deployment of a **Drosera Trap** and a **Drosera Operator** node running on the Hoodi Ethereum testnet.
 
-###Mac User? 
-
+Mac User? 
 For macOS-specific setup instructions, click here:  
 👉 [Drosera Hoodi Guide for Mac](https://github.com/izmerGhub/Drosera-Hoodie-Guide-Setup-MAC--Izmer)
 
