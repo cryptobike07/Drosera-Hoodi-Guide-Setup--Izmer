@@ -915,14 +915,13 @@ If you receive `true` as a response, it means you have successfully completed al
 cd
 cd ~/Drosera-Network
 docker compose up -d
-```
-```bash
+
 #SystemD user
 sudo systemctl daemon-reload
 sudo systemctl enable drosera
 sudo systemctl restart drosera
 
----
+```
 
 ### 6. View the List of submitted Discord Names
 
