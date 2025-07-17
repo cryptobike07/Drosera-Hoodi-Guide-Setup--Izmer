@@ -901,7 +901,7 @@ source /root/.bashrc
 cast call 0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608 "isResponder(address)(bool)" OWNER_ADDRESS --rpc-url https://ethereum-hoodi-rpc.publicnode.com
 ```
 
-Replace `OWNER_ADDRESS` with your Trap's owner address is wallet/operator address NOT TRAP ADDRESS (your main address that deployed the Trap's contract).  
+Replace `OWNER_ADDRESS` with your Trap's owner address is commonly whitelist/wallet/operator address NOT TRAP ADDRESS (your main address that deployed the Trap's contract).  
 If you receive `true` as a response, it means you have successfully completed all the steps.
 
 > It may take a few minutes to successfully receive `true` as a response.
