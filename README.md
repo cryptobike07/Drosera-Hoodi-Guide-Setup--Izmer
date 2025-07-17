@@ -911,10 +911,16 @@ If you receive `true` as a response, it means you have successfully completed al
 ### 5. Re-run Operator nodes
 
 ```bash
+#Docker user
 cd
 cd ~/Drosera-Network
 docker compose up -d
 ```
+```bash
+#SystemD user
+sudo systemctl daemon-reload
+sudo systemctl enable drosera
+sudo systemctl restart drosera
 
 ---
 
