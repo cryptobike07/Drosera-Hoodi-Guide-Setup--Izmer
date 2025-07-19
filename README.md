@@ -789,7 +789,7 @@ nano ~/Drosera-Network/docker-compose.yaml
 ```
 `docker-compose.yaml`:
 ```yaml
-version: '3'
+version: '3.8'
 services:
   operator1:
     image: ghcr.io/drosera-network/drosera-operator:latest
