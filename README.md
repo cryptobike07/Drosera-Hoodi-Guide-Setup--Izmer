@@ -494,11 +494,15 @@ nano /etc/wireguard/wg0.conf
 PrivateKey = <VPS_PRIVATE_KEY>
 Address = 10.8.0.1/24
 ListenPort = 51820
+
+# CRITICAL INTERNET PRESERVATION RULES:
 PostUp = sysctl -w net.ipv4.ip_forward=1
-PostUp = iptables -t nat -A PREROUTING -p tcp --dport 31313 -j DNAT --to-destination 10.8.0.2
-PostUp = iptables -t nat -A PREROUTING -p tcp --dport 31314 -j DNAT --to-destination 10.8.0.2
-PostUp = iptables -A FORWARD -i wg0 -j ACCEPT
-PostDown = iptables -D FORWARD -i wg0 -j ACCEPT
+PostUp = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostUp = iptables -A FORWARD -i eth0 -o wg0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+PostUp = iptables -A FORWARD -i wg0 -o eth0 -j ACCEPT
+# Drosera-specific port forwarding:
+PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31313 -j DNAT --to 10.8.0.2
+PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31314 -j DNAT --to 10.8.0.2
 
 [Peer]
 PublicKey = <WSL_PUBLIC_KEY>
@@ -533,7 +537,8 @@ cat publickey   # <WSL_PUBLIC_KEY>
 [Interface]
 PrivateKey = <WSL_PRIVATE_KEY>
 Address = 10.8.0.2/24
-DNS = 8.8.8.8
+DNS = 1.1.1.1, 8.8.8.8
+BlockInternet = true  # Prevents IPv6 leaks
 
 [Peer]
 PublicKey = <VPS_PUBLIC_KEY>
