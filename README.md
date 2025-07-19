@@ -823,7 +823,7 @@ services:
     environment:
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
-      - DRO__ETH__BACKUP_RPC_URL=https://backup-rpc.hoodi.ethpandaops.io   # add backup RPC
+      - DRO__ETH__BACKUP_RPC_URL=https://rpc.hoodi.ethpandaops.io   # add backup RPC
       - DRO__ETH__PRIVATE_KEY=${OP1_KEY}
       - DRO__ETH__RPC_TIMEOUT=30s           # increase RPC timeout
       - DRO__ETH__RETRY_COUNT=5             # retry RPC calls on failure
@@ -843,7 +843,7 @@ services:
     environment:
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://rpc.hoodi.ethpandaops.io
-      - DRO__ETH__BACKUP_RPC_URL=https://backup-rpc.hoodi.ethpandaops.io  # add backup RPC
+      - DRO__ETH__BACKUP_RPC_URL=https://ethereum-hoodi-rpc.publicnode.com  # add backup RPC
       - DRO__ETH__PRIVATE_KEY=${OP2_KEY}
       - DRO__ETH__RPC_TIMEOUT=30s           # increase RPC timeout
       - DRO__ETH__RETRY_COUNT=5             # retry RPC calls on failure
