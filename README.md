@@ -453,6 +453,7 @@ sudo ufw reload
 - 🔁 **Ensure you have a static public IP**  
   ❗ Without it, DNAT and port forwarding may fail!
 
+---
 #### Options to Get Public Access:
 
 1. 📞 **Call your ISP and subscribe to a static IP plan**  
@@ -466,6 +467,8 @@ sudo ufw reload
      - 🧰 **WireGuard VPN on VPS**
      - 🔧 **WireGuard VPN on your PC**
      - 🧱 **Port forwarding with UFW or iptables**
+---
+
 💰 **HostVDS** –  2$ per month affordable VPS (Perfect for this case) (Accept crypto payment)  
 ➡️ [Check HostVDS Plans](https://hostvds.com/?affiliate_uuid=f3d517f2-6e58-4549-9ecd-d280fa8cea3c) <!-- hidden referral -->
 
