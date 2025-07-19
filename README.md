@@ -239,12 +239,15 @@ nano docker-compose.yaml
 
 
 ```yaml
-version: '3'
+version: '3.8'
+
 services:
   drosera-operator:
-    image: ghcr.io/drosera-network/drosera-operator:latest
+    image: ghcr.io/drosera-network/drosera-operator:v1.20.0
     container_name: drosera-operator
-    network_mode: host
+    ports:
+      - "31313:31313"
+      - "31314:31314"
     environment:
       - DRO__DB_FILE_PATH=/data/drosera.db
       - DRO__DROSERA_ADDRESS=0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
@@ -257,13 +260,22 @@ services:
       - DRO__NETWORK__P2P_PORT=31313
       - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${VPS_IP}
       - DRO__SERVER__PORT=31314
+      - RUST_LOG=info,drosera_operator=debug
+      - DRO__ETH__RPC_TIMEOUT=30s
+      - DRO__ETH__RETRY_COUNT=5
     volumes:
       - drosera_data:/data
-    command: ["node"]
-    restart: always
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    command: node
 
 volumes:
   drosera_data:
+
 ```
 
 ### Create .env file
