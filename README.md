@@ -467,15 +467,131 @@ sudo ufw reload
      - 🔧 **WireGuard VPN on your PC**
      - 🧱 **Port forwarding with UFW or iptables**
 
+## 🛡️ Step 1: VPS Setup (Ubuntu 22.04)
+
+**1. Configure WireGuard on VPS**  
 ```bash
-# Example: allow forwarded port through VPS UFW
-sudo ufw allow from 10.0.0.0/24 to any port <YOUR_NODE_PORT>
+sudo apt update && sudo apt install -y wireguard resolvconf
+sudo su
+umask 077
+wg genkey > /etc/wireguard/privatekey
+wg pubkey < /etc/wireguard/privatekey > /etc/wireguard/publickey
+cat /etc/wireguard/privatekey  # <VPS_PRIVATE_KEY>
+cat /etc/wireguard/publickey   # <VPS_PUBLIC_KEY>
 ```
 
+**2. Create VPS WireGuard Config**  
 ```bash
-# Optional: iptables DNAT/SNAT rules (VPS side)
-sudo iptables -t nat -A PREROUTING -p tcp --dport <VPS_PORT> -j DNAT --to-destination 10.0.0.X:<NODE_PORT>
-sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+nano /etc/wireguard/wg0.conf
+```
+```ini
+[Interface]
+PrivateKey = <VPS_PRIVATE_KEY>
+Address = 10.8.0.1/24
+ListenPort = 51820
+PostUp = sysctl -w net.ipv4.ip_forward=1
+PostUp = iptables -t nat -A PREROUTING -p tcp --dport 31313 -j DNAT --to-destination 10.8.0.2
+PostUp = iptables -t nat -A PREROUTING -p tcp --dport 31314 -j DNAT --to-destination 10.8.0.2
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT
+
+[Peer]
+PublicKey = <WSL_PUBLIC_KEY>
+AllowedIPs = 10.8.0.2/32
+```
+
+**3. Enable and Start WireGuard**  
+```bash
+sudo systemctl enable wg-quick@wg0
+sudo systemctl start wg-quick@wg0
+```
+
+## 💻 Step 2: Windows WSL2 Setup
+
+**1. Install WireGuard on Windows**
+- Download from https://www.wireguard.com/install/
+
+**2. Generate Keys in WSL**  
+```bash
+sudo apt update && sudo apt install -y wireguard-tools
+umask 077
+wg genkey | tee privatekey | wg pubkey > publickey
+cat privatekey  # <WSL_PRIVATE_KEY>
+cat publickey   # <WSL_PUBLIC_KEY>
+```
+
+**3. Create Windows Tunnel Config**
+1. Open WireGuard Windows app
+2. Click "Add Tunnel" > "Add empty tunnel"
+3. Paste this config:
+```ini
+[Interface]
+PrivateKey = <WSL_PRIVATE_KEY>
+Address = 10.8.0.2/24
+DNS = 8.8.8.8
+
+[Peer]
+PublicKey = <VPS_PUBLIC_KEY>
+Endpoint = <VPS_IP>:51820
+AllowedIPs = 10.8.0.0/24
+PersistentKeepalive = 25
+```
+
+**4. Activate Tunnel**
+- Click "Activate" in WireGuard Windows app
+- Verify connection:
+```powershell
+ping 10.8.0.1
+```
+
+## 🐳 Step 3: Docker in WSL2
+
+**1. Update docker-compose.yaml**  
+```bash
+nano docker-compose.yaml
+```
+```yaml
+version: '3'
+services:
+  drosera-operator:
+    image: ghcr.io/drosera-network/drosera-operator:latest
+    container_name: drosera-operator
+    network_mode: host
+    environment:
+      - DRO__DB_FILE_PATH=/data/drosera.db
+      - DRO__DROSERA_ADDRESS=0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
+      - DRO__LISTEN_ADDRESS=10.8.0.2
+      - DRO__DISABLE_DNR_CONFIRMATION=true
+      - DRO__ETH__CHAIN_ID=560048
+      - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__BACKUP_RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__PRIVATE_KEY=${ETH_PRIVATE_KEY}
+      - DRO__NETWORK__P2P_PORT=31313
+      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${VPS_IP}
+      - DRO__SERVER__PORT=31314
+    volumes:
+      - drosera_data:/data
+    restart: always
+    cap_add:
+      - NET_ADMIN
+
+volumes:
+  drosera_data:
+```
+
+**2. Update .env file**  
+```bash
+nano .env
+```
+```
+ETH_PRIVATE_KEY=your_private_key_here
+VPS_IP=your_vps_ip_here
+```
+
+**3. Start the Container**  
+```bash
+docker compose up -d
+docker compose logs -f
 ```
 
 ---
