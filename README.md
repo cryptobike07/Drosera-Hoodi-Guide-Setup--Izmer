@@ -823,7 +823,10 @@ services:
     environment:
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__BACKUP_RPC_URL=https://backup-rpc.hoodi.ethpandaops.io   # add backup RPC
       - DRO__ETH__PRIVATE_KEY=${OP1_KEY}
+      - DRO__ETH__RPC_TIMEOUT=30s           # increase RPC timeout
+      - DRO__ETH__RETRY_COUNT=5             # retry RPC calls on failure
       - DRO__NETWORK__P2P_PORT=31313
       - DRO__SERVER__PORT=31314
       - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${SERVER_IP}
@@ -840,7 +843,10 @@ services:
     environment:
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://rpc.hoodi.ethpandaops.io
+      - DRO__ETH__BACKUP_RPC_URL=https://backup-rpc.hoodi.ethpandaops.io  # add backup RPC
       - DRO__ETH__PRIVATE_KEY=${OP2_KEY}
+      - DRO__ETH__RPC_TIMEOUT=30s           # increase RPC timeout
+      - DRO__ETH__RETRY_COUNT=5             # retry RPC calls on failure
       - DRO__NETWORK__P2P_PORT=31315
       - DRO__SERVER__PORT=31316
       - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${SERVER_IP}
@@ -853,8 +859,6 @@ services:
 volumes:
   op1_data:
   op2_data:
-
-
 ```
 ```bash
 nano ~/Drosera-Network/.env
