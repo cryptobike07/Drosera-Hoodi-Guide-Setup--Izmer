@@ -514,7 +514,13 @@ AllowedIPs = 10.8.0.2/32
 sudo systemctl enable wg-quick@wg0
 sudo systemctl start wg-quick@wg0
 ```
-
+**4. VPS Firewall Fix:**
+   ```bash
+   sudo ufw allow 51820/udp
+   sudo ufw allow 22/tcp
+   sudo ufw allow 31313/tcp
+   sudo ufw allow 31314/tcp
+   ```
 ## 💻 Step 2: Windows WSL2 Setup
 
 **1. Install WireGuard on Windows**
@@ -553,7 +559,13 @@ PersistentKeepalive = 25
 ```powershell
 ping 10.8.0.1
 ```
-
+**5. VPS Firewall Fix:**
+   ```bash
+   sudo ufw allow 51820/udp
+   sudo ufw allow 22/tcp
+   sudo ufw allow 31313/tcp
+   sudo ufw allow 31314/tcp
+   ```
 ## 🐳 Step 3: Docker in WSL2
 
 **1. Update docker-compose.yaml**  
