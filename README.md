@@ -255,7 +255,7 @@ services:
       - DRO__DISABLE_DNR_CONFIRMATION=true
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
-      - DRO__ETH__BACKUP_RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
+      - DRO__ETH__BACKUP_RPC_URL=https://rpc.hoodi.ethpandaops.io
       - DRO__ETH__PRIVATE_KEY=${ETH_PRIVATE_KEY}
       - DRO__NETWORK__P2P_PORT=31313
       - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${VPS_IP}
