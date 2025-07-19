@@ -22,6 +22,9 @@ For macOS-specific setup instructions, click here:
 - [Register Your Operator](#register-your-operator)
 - [Firewall Configuration](#firewall-configuration)
 - [Multiple Operators Setup](#drosera-network-multi-operator-setup-hoodi-network)
+- [How to Fix common IP/firewall Issues Red Node](#how-to-fix-common-ipfirewall-issues-red-node)
+- [❗❗❗ Problem: Register Operator Transaction Fails❗❗❗](#-problem-register-operator-transaction-fails-)
+- [GET CADET ROLE DISCORD (HOODI VERSION YEHOOOO) 🟥](#get-cadet-role-discord-hoodi-version-yehoooo-)
 - [Useful Commands & Updates](#useful-commands--updates)
 - [Contact and Support](#contact-and-support)
 
