@@ -574,7 +574,7 @@ PersistentKeepalive = 25
 ```powershell
 ping 10.8.0.1
 ```
-**5. VPS Firewall Fix:**
+**5. Local Firewall Fix:**
    ```bash
    sudo ufw allow 51820/udp
    sudo ufw allow 22/tcp
