@@ -548,10 +548,13 @@ sudo systemctl start wg-quick@wg0
    sudo ufw allow 31313/tcp
    sudo ufw allow 31314/tcp
    ```
-Choose one of your local device:
+#Choose your local device setup method:
 
-- [Method 1: Windows WSL2 Setup](#method-1-windows-wsl2-setup)
-- [Method 2: Linux Setup](#method-2-linux-setup)
+- **[Method 1: Windows WSL2 Setup](#step-2-windows-wsl2-setup)**  
+  *(Click to jump to Windows instructions)*
+
+- **[Method 2: Linux Setup](#step-2-install-wireguard-on-linux)**  
+  *(Click to jump to Linux instructions)*
 
 ## 💻 Step 2: Windows WSL2 Setup
 
@@ -598,7 +601,7 @@ ping 10.8.0.1
    sudo ufw allow 31313/tcp
    sudo ufw allow 31314/tcp
    ```
-## 💻 **Step 2: Install WireGuard on Linux (Ubuntu/Debian)**
+## 💻 **Step 2: Install WireGuard on Linux**
 ```bash
 sudo apt update && sudo apt install -y wireguard resolvconf
 ```
