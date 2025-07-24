@@ -532,7 +532,7 @@ PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31313 -j DNAT --to
 PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31314 -j DNAT --to 10.8.0.2
 
 [Peer]
-PublicKey = <WSL_PUBLIC_KEY>
+PublicKey = <WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY>
 AllowedIPs = 10.8.0.2/32
 ```
 
