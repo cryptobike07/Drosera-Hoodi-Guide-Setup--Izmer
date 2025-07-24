@@ -602,14 +602,15 @@ ping 10.8.0.1
    sudo ufw allow 31313/tcp
    sudo ufw allow 31314/tcp
    ```
-## 💻 **Step 2: Install WireGuard on Linux**
+## 💻 **Step 2: Linux Setup**
+**1. Install WireGuard **
 ```bash
 sudo apt update && sudo apt install -y wireguard resolvconf
 ```
 
 ---
 
-**1. Generate WireGuard Keys**
+**2. Generate WireGuard Keys**
 ```bash
 umask 077
 wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
@@ -623,7 +624,7 @@ sudo cat /etc/wireguard/publickey   # <LINUX_PUBLIC_KEY>
 
 ---
 
-**2. Create WireGuard Config**
+**3. Create WireGuard Config**
 ```bash
 sudo nano /etc/wireguard/wg0.conf
 ```
@@ -645,12 +646,12 @@ PersistentKeepalive = 25
 
 ---
 
-**3. Start WireGuard Tunnel**
+**4. Start WireGuard Tunnel**
 ```bash
 sudo systemctl enable wg-quick@wg0
 sudo systemctl start wg-quick@wg0
 ```
-**4. Local Firewall Fix:**
+**5. Local Firewall Fix:**
    ```bash
    sudo ufw allow 51820/udp
    sudo ufw allow 22/tcp
