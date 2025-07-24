@@ -120,6 +120,8 @@ sudo docker run hello-world
 ### Install Required Tools
 
 ```bash
+cd #ensure you in root directory
+
 # Drosera CLI
 curl -L https://app.drosera.io/install | bash
 source ~/.bashrc
