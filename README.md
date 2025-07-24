@@ -548,6 +548,11 @@ sudo systemctl start wg-quick@wg0
    sudo ufw allow 31313/tcp
    sudo ufw allow 31314/tcp
    ```
+Choose one of your local device:
+
+- [Method 1: Windows WSL2 Setup](#method-1-windows-wsl2-setup)
+- [Method 2: Linux Setup](#method-2-linux-setup)
+
 ## 💻 Step 2: Windows WSL2 Setup
 
 **1. Install WireGuard on Windows**
@@ -593,6 +598,62 @@ ping 10.8.0.1
    sudo ufw allow 31313/tcp
    sudo ufw allow 31314/tcp
    ```
+## 💻 **Step 2: Install WireGuard on Linux (Ubuntu/Debian)**
+```bash
+sudo apt update && sudo apt install -y wireguard resolvconf
+```
+
+---
+
+**1. Generate WireGuard Keys**
+```bash
+umask 077
+wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
+```
+
+**View your keys:**
+```bash
+sudo cat /etc/wireguard/privatekey  # <LINUX_PRIVATE_KEY>
+sudo cat /etc/wireguard/publickey   # <LINUX_PUBLIC_KEY>
+```
+
+---
+
+**2. Create WireGuard Config**
+```bash
+sudo nano /etc/wireguard/wg0.conf
+```
+
+Paste this (replace placeholders):
+```ini
+[Interface]
+PrivateKey = <LINUX_PRIVATE_KEY>
+Address = 10.8.0.2/24
+DNS = 1.1.1.1
+Table = off  # Prevents routing conflicts
+
+[Peer]
+PublicKey = <VPS_PUBLIC_KEY>
+Endpoint = <VPS_IP>:51820
+AllowedIPs = 10.8.0.0/24
+PersistentKeepalive = 25
+```
+
+---
+
+**3. Start WireGuard Tunnel**
+```bash
+sudo systemctl enable wg-quick@wg0
+sudo systemctl start wg-quick@wg0
+```
+**4. Local Firewall Fix:**
+   ```bash
+   sudo ufw allow 51820/udp
+   sudo ufw allow 22/tcp
+   sudo ufw allow 31313/tcp
+   sudo ufw allow 31314/tcp
+   ```
+
 ## 🐳 Step 3: Docker in WSL2
 
 **1. Update docker-compose.yaml**  
