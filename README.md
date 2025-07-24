@@ -551,10 +551,10 @@ sudo systemctl start wg-quick@wg0
 
 ## Choose your local device setup method:
 
-- **[Method 1: Windows WSL2 Setup](#step-2-windows-wsl2-setup)**  
+- **[Step 2: Windows WSL2 Setup](#step-2-windows-wsl2-setup)**  
 
 
-- **[Method 2: Linux Setup](#step-2-install-wireguard-on-linux)**  
+- **[Step 2: Linux Setup](#step-2-install-wireguard-on-linux)**  
 
 
 ## 💻 Step 2: Windows WSL2 Setup
