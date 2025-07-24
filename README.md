@@ -246,7 +246,7 @@ version: '3.8'
 
 services:
   drosera-operator:
-    image: ghcr.io/drosera-network/drosera-operator:v1.20.0
+    image: ghcr.io/drosera-network/drosera-operator:latest
     container_name: drosera-operator
     ports:
       - "31313:31313"
