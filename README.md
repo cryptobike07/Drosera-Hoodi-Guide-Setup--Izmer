@@ -532,7 +532,7 @@ PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31313 -j DNAT --to
 PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31314 -j DNAT --to 10.8.0.2
 
 [Peer]
-PublicKey = <WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY>
+PublicKey = <WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY> #Get key at STEP 2
 AllowedIPs = 10.8.0.2/32
 ```
 
@@ -554,7 +554,7 @@ sudo systemctl start wg-quick@wg0
 - **[Step 2: Windows WSL2 Setup](#step-2-windows-wsl2-setup)**  
 
 
-- **[Step 2: Linux Setup](#step-2-install-wireguard-on-linux)**  
+- **[Step 2: Linux Setup](#step-2-linux-setup)**  
 
 
 ## 💻 Step 2: Windows WSL2 Setup
@@ -660,7 +660,7 @@ sudo systemctl start wg-quick@wg0
    sudo ufw allow 31314/tcp
    ```
 
-## 🐳 Step 3: Docker in WSL2
+## 🐳 Step 3: Docker in WSL2/Linux
 
 **1. Update docker-compose.yaml**  
 ```bash
