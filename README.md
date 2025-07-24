@@ -603,7 +603,8 @@ ping 10.8.0.1
    sudo ufw allow 31314/tcp
    ```
 ## 💻 **Step 2: Linux Setup**
-**1. Install WireGuard **
+
+**1. Install WireGuard**
 ```bash
 sudo apt update && sudo apt install -y wireguard resolvconf
 ```
