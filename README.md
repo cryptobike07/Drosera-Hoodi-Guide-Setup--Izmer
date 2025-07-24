@@ -6,6 +6,16 @@ This repository documents the setup and deployment of a **Drosera Trap** and a *
 For macOS-specific setup instructions, click here:  
 👉 [Drosera Hoodi Guide for Mac](https://github.com/izmerGhub/Drosera-Hoodie-Guide-Setup-MAC--Izmer)
 
+### Not a technical person? No problem!
+
+You can still run a Drosera node easily by purchasing one with **5% discount** using my referral code:
+
+**Referral Code: `AQ8SY6`**
+
+[👉 Buy Drosera Node Now (5% Off)](https://app.rapidnode.xyz/purchase/drosera)
+
+Simply click the link above and use the referral code during checkout to get your discount!
+
 ---
 
 ## Table of Contents
