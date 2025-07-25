@@ -526,23 +526,27 @@ MTU = 1280
 # Enable IP forwarding
 PostUp = sysctl -w net.ipv4.ip_forward=1
 
-# NAT client traffic to internet
+# Allow SSH always (optional but recommended)
+PostUp = iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+# NAT traffic from VPN clients to Internet
 PostUp = iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
 
-# Allow related traffic
+# Allow forwarding between VPN and Internet
 PostUp = iptables -A FORWARD -i wg0 -o eth0 -j ACCEPT
 PostUp = iptables -A FORWARD -i eth0 -o wg0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-# DNAT TCP to Linux client
+# DNAT TCP ports to 10.8.0.2 (Linux client)
 PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp -m multiport --dports 31313,31314 -j DNAT --to-destination 10.8.0.2
 
-# DNAT UDP to Linux client (needed for P2P)
+# DNAT UDP ports to 10.8.0.2 (Linux client)
 PostUp = iptables -t nat -A PREROUTING -i eth0 -p udp -m multiport --dports 31313,31314 -j DNAT --to-destination 10.8.0.2
 
-# SNAT reply from Linux client
+# SNAT replies from 10.8.0.2 to appear from VPS public IP
 PostUp = iptables -t nat -A POSTROUTING -s 10.8.0.2 -j SNAT --to-source <VPS_PUBLIC_IP>
 
-# Cleanup rules
+# --- Cleanup rules ---
+PostDown = iptables -D INPUT -p tcp --dport 22 -j ACCEPT
 PostDown = iptables -t nat -D POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
 PostDown = iptables -D FORWARD -i wg0 -o eth0 -j ACCEPT
 PostDown = iptables -D FORWARD -i eth0 -o wg0 -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -551,7 +555,7 @@ PostDown = iptables -t nat -D PREROUTING -i eth0 -p udp -m multiport --dports 31
 PostDown = iptables -t nat -D POSTROUTING -s 10.8.0.2 -j SNAT --to-source <VPS_PUBLIC_IP>
 
 [Peer]
-PublicKey = <WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY> #GET AT STEP 2
+PublicKey = <WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY> # GET AT STEP 2 WINDOW/LINUX SETUP
 AllowedIPs = 10.8.0.2/32
 
 ```
