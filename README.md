@@ -261,8 +261,8 @@ services:
     image: ghcr.io/drosera-network/drosera-operator:latest
     container_name: drosera-operator
     ports:
-      - "31313:31313"
-      - "31314:31314"
+      - "31313:31313"   # P2P
+      - "31314:31314"   # HTTP
     environment:
       - DRO__DB_FILE_PATH=/data/drosera.db
       - DRO__DROSERA_ADDRESS=0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
@@ -278,18 +278,28 @@ services:
       - RUST_LOG=info,drosera_operator=debug
       - DRO__ETH__RPC_TIMEOUT=30s
       - DRO__ETH__RETRY_COUNT=5
+      # Optional: increase internal peer retry behavior (if supported by app)
+      # - DRO__NETWORK__RETRY_INTERVAL=10s
+      # - DRO__NETWORK__RETRY_COUNT=5
     volumes:
       - drosera_data:/data
-    restart: unless-stopped
+    restart: always   # Ensures automatic container recovery
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
-        max-file: "3"
+        max-file: "5"
+    healthcheck:   # Add Docker-native watchdog
+      test: ["CMD", "curl", "-f", "http://localhost:31314/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     command: node
 
 volumes:
   drosera_data:
+
 
 ```
 
