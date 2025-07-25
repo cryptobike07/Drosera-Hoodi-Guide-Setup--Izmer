@@ -521,20 +521,41 @@ nano /etc/wireguard/wg0.conf
 PrivateKey = <VPS_PRIVATE_KEY>
 Address = 10.8.0.1/24
 ListenPort = 51820
+MTU = 1280
 
-# CRITICAL INTERNET PRESERVATION RULES:
+# Enable IP forwarding
 PostUp = sysctl -w net.ipv4.ip_forward=1
-PostUp = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-PostUp = iptables -A FORWARD -i eth0 -o wg0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# NAT client traffic to internet
+PostUp = iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+
+# Allow related traffic
 PostUp = iptables -A FORWARD -i wg0 -o eth0 -j ACCEPT
-# Drosera-specific port forwarding:
-PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31313 -j DNAT --to 10.8.0.2
-PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 31314 -j DNAT --to 10.8.0.2
+PostUp = iptables -A FORWARD -i eth0 -o wg0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# DNAT TCP to Linux client
+PostUp = iptables -t nat -A PREROUTING -i eth0 -p tcp -m multiport --dports 31313,31314 -j DNAT --to-destination 10.8.0.2
+
+# DNAT UDP to Linux client (needed for P2P)
+PostUp = iptables -t nat -A PREROUTING -i eth0 -p udp -m multiport --dports 31313,31314 -j DNAT --to-destination 10.8.0.2
+
+# SNAT reply from Linux client
+PostUp = iptables -t nat -A POSTROUTING -s 10.8.0.2 -j SNAT --to-source <VPS_PUBLIC_IP>
+
+# Cleanup rules
+PostDown = iptables -t nat -D POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -o eth0 -j ACCEPT
+PostDown = iptables -D FORWARD -i eth0 -o wg0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+PostDown = iptables -t nat -D PREROUTING -i eth0 -p tcp -m multiport --dports 31313,31314 -j DNAT --to-destination 10.8.0.2
+PostDown = iptables -t nat -D PREROUTING -i eth0 -p udp -m multiport --dports 31313,31314 -j DNAT --to-destination 10.8.0.2
+PostDown = iptables -t nat -D POSTROUTING -s 10.8.0.2 -j SNAT --to-source <VPS_PUBLIC_IP>
 
 [Peer]
-PublicKey = <WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY> #Get key at STEP 2
+PublicKey = <WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY> #GET AT STEP 2
 AllowedIPs = 10.8.0.2/32
+
 ```
+Add accordingly input before save `<VPS_PRIVATE_KEY>`, `<VPS_PUBLIC_IP>`,`<WSL_PUBLIC_KEY> or <LINUX_PUBLIC_KEY>`
 
 **3. Enable and Start WireGuard**  
 ```bash
@@ -580,14 +601,16 @@ cat publickey   # <WSL_PUBLIC_KEY>
 PrivateKey = <WSL_PRIVATE_KEY>
 Address = 10.8.0.2/24
 DNS = 1.1.1.1, 8.8.8.8
-BlockInternet = true  # Prevents IPv6 leaks
+MTU = 1280
 
 [Peer]
 PublicKey = <VPS_PUBLIC_KEY>
-Endpoint = <VPS_IP>:51820
+Endpoint = <VPS_PUBLIC_IP>:51820
 AllowedIPs = 10.8.0.0/24
 PersistentKeepalive = 25
+
 ```
+Add accordingly input before save `<WSL_PRIVATE_KEY>`, `<VPS_PUBLIC_KEY>`, `<VPS_PUBLIC_IP>`
 
 **4. Activate Tunnel**
 - Click "Activate" in WireGuard Windows app
@@ -635,17 +658,17 @@ Paste this (replace placeholders):
 [Interface]
 PrivateKey = <LINUX_PRIVATE_KEY>
 Address = 10.8.0.2/24
-DNS = 1.1.1.1
-Table = off  # Prevents routing conflicts
+DNS = 1.1.1.1, 8.8.8.8
+MTU = 1280
 
 [Peer]
 PublicKey = <VPS_PUBLIC_KEY>
-Endpoint = <VPS_IP>:51820
+Endpoint = <VPS_PUBLIC_IP>:51820
 AllowedIPs = 10.8.0.0/24
 PersistentKeepalive = 25
 ```
+Add accordingly input before save `<LINUX_PRIVATE_KEY>`, `<VPS_PUBLIC_KEY>`, `<VPS_PUBLIC_IP>`
 
----
 
 **4. Start WireGuard Tunnel**
 ```bash
@@ -673,18 +696,18 @@ services:
   drosera-operator:
     image: ghcr.io/drosera-network/drosera-operator:latest
     container_name: drosera-operator
-    network_mode: host  # Uses the host's network stack, good for WireGuard setup
+    network_mode: host
     environment:
       - DRO__DB_FILE_PATH=/data/drosera.db
       - DRO__DROSERA_ADDRESS=0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
-      - DRO__LISTEN_ADDRESS=10.8.0.2           # Your WireGuard VPN IP
+      - DRO__LISTEN_ADDRESS=10.8.0.2
       - DRO__DISABLE_DNR_CONFIRMATION=true
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
       - DRO__ETH__BACKUP_RPC_URL=https://rpc.hoodi.ethpandaops.io
       - DRO__ETH__PRIVATE_KEY=${ETH_PRIVATE_KEY}
       - DRO__NETWORK__P2P_PORT=31313
-      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${VPS_IP}
+      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=<VPS_PUBLIC_IP>
       - DRO__SERVER__PORT=31314
       - RUST_LOG=info,drosera_operator=debug
       - DRO__ETH__RPC_TIMEOUT=30s
@@ -693,7 +716,7 @@ services:
       - drosera_data:/data
     restart: unless-stopped
     cap_add:
-      - NET_ADMIN          # Needed for network administration inside container
+      - NET_ADMIN
     logging:
       driver: json-file
       options:
@@ -702,6 +725,7 @@ services:
 
 volumes:
   drosera_data:
+
 
 ```
 
