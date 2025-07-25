@@ -726,7 +726,7 @@ services:
       - DRO__ETH__RETRY_COUNT=5
     volumes:
       - drosera_data:/data
-    restart: unless-stopped
+    restart: always
     cap_add:
       - NET_ADMIN
     logging:
@@ -949,7 +949,7 @@ services:
       - DRO__LOG__LEVEL=debug
     volumes:
       - op1_data:/data
-    restart: unless-stopped
+    restart: always
 
   operator2:
     image: ghcr.io/drosera-network/drosera-operator:latest
@@ -969,7 +969,7 @@ services:
       - DRO__LOG__LEVEL=debug
     volumes:
       - op2_data:/data
-    restart: unless-stopped
+    restart: always
 
 volumes:
   op1_data:
