@@ -708,32 +708,42 @@ services:
   drosera-operator:
     image: ghcr.io/drosera-network/drosera-operator:latest
     container_name: drosera-operator
-    network_mode: host
+    ports:
+      - "31313:31313"   # P2P
+      - "31314:31314"   # HTTP
     environment:
       - DRO__DB_FILE_PATH=/data/drosera.db
       - DRO__DROSERA_ADDRESS=0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D
-      - DRO__LISTEN_ADDRESS=10.8.0.2
+      - DRO__LISTEN_ADDRESS=0.0.0.0
       - DRO__DISABLE_DNR_CONFIRMATION=true
       - DRO__ETH__CHAIN_ID=560048
       - DRO__ETH__RPC_URL=https://ethereum-hoodi-rpc.publicnode.com
       - DRO__ETH__BACKUP_RPC_URL=https://rpc.hoodi.ethpandaops.io
       - DRO__ETH__PRIVATE_KEY=${ETH_PRIVATE_KEY}
       - DRO__NETWORK__P2P_PORT=31313
-      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=<VPS_PUBLIC_IP>
+      - DRO__NETWORK__EXTERNAL_P2P_ADDRESS=${VPS_IP}
       - DRO__SERVER__PORT=31314
       - RUST_LOG=info,drosera_operator=debug
       - DRO__ETH__RPC_TIMEOUT=30s
       - DRO__ETH__RETRY_COUNT=5
+      # Optional: increase internal peer retry behavior (if supported by app)
+      # - DRO__NETWORK__RETRY_INTERVAL=10s
+      # - DRO__NETWORK__RETRY_COUNT=5
     volumes:
       - drosera_data:/data
-    restart: always
-    cap_add:
-      - NET_ADMIN
+    restart: always   # Ensures automatic container recovery
     logging:
-      driver: json-file
+      driver: "json-file"
       options:
         max-size: "10m"
-        max-file: "3"
+        max-file: "5"
+    healthcheck:   # Add Docker-native watchdog
+      test: ["CMD", "curl", "-f", "http://localhost:31314/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    command: node
 
 volumes:
   drosera_data:
