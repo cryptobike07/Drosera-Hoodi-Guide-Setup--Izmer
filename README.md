@@ -574,13 +574,11 @@ sudo systemctl start wg-quick@wg0
    sudo ufw allow 31314/tcp
    ```
 
-## Choose your local device setup method:
+# Choose your local device setup method:
 
-- **[Step 2: Windows WSL2 Setup](#step-2-windows-wsl2-setup)**  
-
-
-- **[Step 2: Linux Setup](#step-2-linux-setup)**  
-
+- **[Step 2: Windows WSL2 Setup](#-step-2-windows-wsl2-setup)**
+- **[Step 2: Linux Setup](#-step-2-linux-setup)**
+ 
 
 ## 💻 Step 2: Windows WSL2 Setup
 
@@ -629,7 +627,7 @@ ping 10.8.0.1
    sudo ufw allow 31313/tcp
    sudo ufw allow 31314/tcp
    ```
-## 💻 **Step 2: Linux Setup**
+## 💻 Step 2: Linux Setup
 
 **1. Install WireGuard**
 ```bash
