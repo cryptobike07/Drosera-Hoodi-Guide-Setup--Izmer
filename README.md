@@ -6,7 +6,7 @@ This repository documents the setup and deployment of a **Drosera Trap** and a *
 For macOS-specific setup instructions, click here:  
 👉 [Drosera Hoodi Guide for Mac](https://github.com/izmerGhub/Drosera-Hoodie-Guide-Setup-MAC--Izmer)
 
-### Not a technical person? No problem!
+# Not a technical person? No problem! (NO VPS + NO PC + INSTANT NODE RUN)
 
 You can still run a Drosera node easily by purchasing one with **5% discount** using my referral code:
 
