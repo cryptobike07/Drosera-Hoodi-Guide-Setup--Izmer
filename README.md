@@ -2,79 +2,35 @@
 
 This repository documents the setup and deployment of a **Drosera Trap** and a **Drosera Operator** node running on the Hoodi Ethereum testnet.
 
-# Mac User? if not scroll further.
-For macOS-specific setup instructions, click here:  
-👉 [Drosera Hoodi Guide for Mac](https://github.com/izmerGhub/Drosera-Hoodie-Guide-Setup-MAC--Izmer)
-
-# BAD AT CODING? No problem! (NO VPS + NO PC)
-
-You can still run a Drosera node easily by purchasing one with **5% discount** using my referral code:
-
-**Referral Code: `AQ8SY6`**
-
-[👉 Buy Drosera Node Now (5% Off)](https://app.rapidnode.xyz/purchase/drosera)
-
-Simply click the link above and use the referral code during checkout to get your discount!
-
----
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Install Dependencies](#install-dependencies)
-- [Install Docker](#install-docker)
-- [Drosera Trap Setup](#drosera-trap-setup)
-- [Trap Configuration (](#trap-configuration-droseratoml)[`drosera.toml`](#trap-configuration-droseratoml)[)](#trap-configuration-droseratoml)
-- [Apply the Trap Config](#apply-the-trap-config)
-- [Check Trap in Dashboard](#check-trap-in-dashboard)
-- [Bloom Boost Trap](#bloom-boost-trap)
-- [Drosera Operator Setup](#drosera-operator-setup)
-- [Register Your Operator](#register-your-operator)
-- [Firewall Configuration](#firewall-configuration)
-- [Multiple Operators Setup](#drosera-network-multi-operator-setup-hoodi-network)
-- [How to Fix common IP/firewall Issues Red Node](#how-to-fix-common-ipfirewall-issues-red-node)
-- [❗❗❗ Problem: Register Operator Transaction Fails❗❗❗](#-problem-register-operator-transaction-fails-)
-- [GET CADET ROLE DISCORD (HOODI VERSION YEHOOOO) 🟥](#get-cadet-role-discord-hoodi-version-yehoooo-)
-- [Useful Commands & Updates](#useful-commands--updates)
-- [Contact and Support](#contact-and-support)
-
----
-
-## Prerequisites
+## 1. Prerequisites
 
 - Ubuntu/Linux environment (WSL Ubuntu works well)
 - At least 4 CPU cores and 8GB RAM recommended
 - Basic CLI knowledge
-- Ethereum private key with funds on Hoodi testnet
-- Open ports: `31313` and `31314` (or your configured ports)
+- Metamask Wallet > Get Ethereum private key
+- Add Hoodi Chain (chainlist.org)
+- Get Hoodi Eth Testnet here:
+  https://stakely.io/faucet/ethereum-hoodi-testnet-eth
 
-# 🔥 [Need VPS under 3 USD? Click here](#-cheapest-vps-hosting-deals-under-3-per-month-perfect-for-testnets--lightweight-nodes)
 
-## Hoodi Testnet ETH (Hoodi Token)
+## 2. Tutorial on Setting up VPS + Linux.
+Rent a VPS VPS is (Virtual Private Server that runs 24/7) “I’m using VPS in all my Linux NODES.” Hardware Requirement: Works with simple hardware — easy to get started but I can run it in my VPS3.
 
-To mine or interact with contracts on the Hoodi Testnet, you'll need test ETH:
+How to Run Octra Node using VPS? Order Here: (Use the Link and Euro(€) For Discount) https://www.jdoqocy.com/click-101100040-15022370 Click Cloud VPS(I used VPS 3 coz I run other Nodes here) > Region Any(I used Japan) > Storage Type 1200GB > Ubuntu v22.04> Log in Password (Don’t forget) > 6–8 settings default only > Click Next > Fill up your details > Payment. “I used Gotymebank or Maya(both vitual cards) link to Paypal(all are perfored in the website). I paid €23 or 1500+ pesos for first month(+ set up fee), second only €14 or 900+ pesos .” Once Paid > Wait for the Email to Arrived > Follow instruction.
 
----
+Setting up on Your Laptop/PC Windows: Now you have your own VPS server. Download putty.org > log in to your IP there. After Connected, We can now Start. Still Confuse? More Guide in VPS Access: https://www.facebook.com/share/p/zhHCh3773653iXZF/ You have now your own Ubuntu(Linux Server) that runs 24/7 in other country. Let’s Navigate!
 
-### 🛠️ Faucet Links
 
-### 🔨 Mining Faucet:
-[https://hoodi-faucet.pk910.de](https://hoodi-faucet.pk910.de)
+## 3. Run Commands:
 
-### 💧 Public Faucets:
-- [QuickNode Faucet](https://faucet.quicknode.com/ethereum/hoodi)  
-- [Stakely Faucet](https://stakely.io/faucet/ethereum-hoodi-testnet-eth)
-
----
-
-### 🔗 Hoodi Testnet Details
-
-For more on the Hoodi testnet RPC, endpoints, and setup guides, refer to:  
-👉 [https://github.com/eth-clients/hoodi](https://github.com/eth-clients/hoodi)
-
+## Open Port
+ Open ports: `31313` and `31314` (or your configured ports) 
+```bash
+ufw allow 31313
+ufw allow 31314
+```
 
 ## Install Dependencies
-
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt install curl ufw iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev -y
@@ -459,6 +415,8 @@ sudo ufw enable
 ```
 # 🟩🟩EVERYTHING IS PERFECT! WELCOME ON HOODI !🟩🟩
 
+
+
 HELLO WORLD TRAP (light green)
 ![Drosera Hoodie One](Asset/hoodie%20one.png)
 ---
@@ -506,8 +464,6 @@ sudo ufw reload
      - 🧱 **Port forwarding with UFW or iptables**
 ---
 
-💰 **HostVDS** –  2$ per month affordable VPS (Perfect for this case) (Accept crypto payment)  
-➡️ [Check HostVDS Plans](https://hostvds.com/?affiliate_uuid=f3d517f2-6e58-4549-9ecd-d280fa8cea3c) <!-- hidden referral -->
 
 ## 🛡️ Step 1: VPS Setup (Ubuntu 22.04)
 
@@ -1224,25 +1180,5 @@ cast call 0x25E2CeF36020A736CF8a4D2cAdD2EBE3940F4608 "getDiscordNamesBatch(uint2
 ---
 ![discord username](Asset/discord%20username%20izmers.png)
 
-## 💸 Cheapest VPS Hosting Deals under 3$ per month (Perfect for Testnets & Lightweight Nodes)
-
-Looking for ultra-budget VPS options Here are two solid picks used by many in the blockchain and dev community:
-
-🔥 **RackNerd** – Reliable low-cost KVM VPS with locations worldwide  
-➡️ [Explore RackNerd Offers](https://my.racknerd.com/aff.php?aff=14994) <!-- hidden referral -->
-
-💰 **HostVDS** – Russian-based affordable VPS with custom configuration  
-➡️ [Check HostVDS Plans](https://hostvds.com/?affiliate_uuid=f3d517f2-6e58-4549-9ecd-d280fa8cea3c) <!-- hidden referral -->
-
-> 🧠 Tip: Always choose a VPS with at least `1 CPU`, `1 GB RAM`, and `10-20 GB SSD` for basic testnet node operation.
-
----
-
-✅ Great for:
-- Running lightweight validator or RPC nodes
-- Experimenting with testnets
-- Hosting low-traffic services
-
-🌍 Suitable for developers on a tight budget or running long-term nodes with minimal cost.
 
 
