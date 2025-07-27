@@ -618,7 +618,7 @@ MTU = 1280
 [Peer]
 PublicKey = <VPS_PUBLIC_KEY>
 Endpoint = <VPS_PUBLIC_IP>:51820
-AllowedIPs = 10.8.0.0/24
+AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 
 ```
@@ -676,7 +676,7 @@ MTU = 1280
 [Peer]
 PublicKey = <VPS_PUBLIC_KEY>
 Endpoint = <VPS_PUBLIC_IP>:51820
-AllowedIPs = 10.8.0.0/24
+AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 ```
 Add accordingly input before save `<LINUX_PRIVATE_KEY>`, `<VPS_PUBLIC_KEY>`, `<VPS_PUBLIC_IP>`
